@@ -3,10 +3,12 @@ using namespace std;
 
 int main()
 {
-    int ar1[2][2],ar2[2][2],row,col,i,j,ar3[2][2];
-
+    int row,col;
     cout<<"enter the number of rows for the matrices : ";cin>>row;
     cout<<"enter the number of cols for the matrices : ";cin>>col;
+
+    int ar1[row][col],ar2[row][col],i,j,ar3[row][col];
+
 
     cout<<"\nINPUT FOR ARRAY A : \n";
     for(i = 0;i < row;i++)
@@ -51,7 +53,7 @@ int main()
     cout<<"\nADDITION MATRIX C : \n";
     for(i = 0;i < row;i++)
     {
-        for(j = 0;i < col;j++)
+        for(j = 0;j < col;j++)
         {
             ar3[i][j] = ar1[i][j] + ar2[i][j];
             cout<<ar3[i][j]<<" ";
