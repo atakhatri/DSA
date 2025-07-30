@@ -8,7 +8,7 @@ struct node // Structure for the nodes we create
 };
 
 struct node *head = nullptr;                  // Head pointer which indicates first node
-struct node *CreateNode(int value);           // function to create a new node, NOTE : this fun. won't be called directly by the users but by the other functions
+struct node *CreateNode(int value);           // function to create a new node, NOTE : this func. won't be called directly by the users but by the other functions
 void InsertAtBeg(int value);                  // function to insert a new node at the beginning of the LL
 void InsertAtEnd(int value);                  // function to insert a new node at the end of the LL
 void InsertAfterNode(int value, int after);   // function to insert a new node after a given node in the LL
@@ -129,7 +129,7 @@ void InsertAtEnd(int value) // Inserting at end
     }
 }
 
-void InsertAfterNode(int value, int after)
+void InsertAfterNode(int value, int after) // inserting after a node
 {
     struct node *new_node = CreateNode(value);
     if (head == nullptr)
@@ -148,7 +148,7 @@ void InsertAfterNode(int value, int after)
     }
 }
 
-void InsertBeforeNode(int value, int before)
+void InsertBeforeNode(int value, int before) // inserting before a node
 {
     struct node *new_node = CreateNode(value);
     if (head == nullptr)
