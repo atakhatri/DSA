@@ -26,7 +26,7 @@ int main()
         cout << "\n1 : Add a node at Beginning";
         cout << "\n2 : Add a node at the End";
         cout << "\n3 : Add a node after a Node";
-        cout << "\n4: Add a node before a node";
+        cout << "\n4 : Add a node before a node";
         cout << "\n5 : Delete a node from the Beginning";
         cout << "\n6 : Delete a node from the End";
         cout << "\n7 : Display the Linked List";
