@@ -23,14 +23,18 @@ int main()
     while (choice != 8)
     {
         printf("\n\n************ MAIN MENU (C) ************");
+
         printf("\n1 : Add a node at Beginning");
         printf("\n2 : Add a node at the End");
         printf("\n3 : Add a node after a Node");
         printf("\n4 : Add a node before a node");
+
         printf("\n5 : Delete a node from the Beginning");
         printf("\n6 : Delete a node from the End");
+
         printf("\n7 : Display the Linked List");
         printf("\n8 : END the Operation !!!");
+
         printf("\n\nEnter your choice : ");
         scanf("%d", &choice);
 
