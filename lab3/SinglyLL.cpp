@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h> // Header File for malloc(),calloc(),realloc()
+#include <iostream>
+using namespace std;
 
 struct node // Structure for the nodes we create
 {
@@ -7,7 +7,7 @@ struct node // Structure for the nodes we create
     struct node *next;
 };
 
-struct node *head = NULL;                     // Head pointer which indicates first node
+struct node *head = nullptr;                  // Head pointer which indicates first node
 struct node *CreateNode(int value);           // function to create a new node, NOTE : this func. won't be called directly by the users but by the other functions
 void InsertAtBeg(int value);                  // function to insert a new node at the beginning of the LL
 void InsertAtEnd(int value);                  // function to insert a new node at the end of the LL
@@ -15,84 +15,88 @@ void InsertAfterNode(int value, int after);   // function to insert a new node a
 void InsertBeforeNode(int value, int before); // function to insert a new node before a given node in the LL
 void DeleteFromBeg();                         // function to delete a node from the beginning of the LL
 void DeleteFromEnd();                         // function to delete a node from the end of the LL
+void Search(int value);                       // function to Search an element from the LL
 void Display();                               // function to display the created LL
 
 int main()
 {
     int choice = 0, value, after, before;
-    while (choice != 8)
+    while (choice != 9)
     {
-        printf("\n\n************ MAIN MENU (C) ************");
-
-        printf("\n1 : Add a node at Beginning");
-        printf("\n2 : Add a node at the End");
-        printf("\n3 : Add a node after a Node");
-        printf("\n4 : Add a node before a node");
-
-        printf("\n5 : Delete a node from the Beginning");
-        printf("\n6 : Delete a node from the End");
-
-        printf("\n7 : Display the Linked List");
-        printf("\n8 : END the Operation !!!");
-
-        printf("\n\nEnter your choice : ");
-        scanf("%d", &choice);
+        cout << "\n\n************ MAIN MENU (CPP) ************";
+        cout << "\n1 : Add a node at Beginning";
+        cout << "\n2 : Add a node at the End";
+        cout << "\n3 : Add a node after a Node";
+        cout << "\n4 : Add a node before a node";
+        cout << "\n5 : Delete a node from the Beginning";
+        cout << "\n6 : Delete a node from the End";
+        cout << "\n7 : Search an Element from the Linked List";
+        cout << "\n8 : Display the Linked List";
+        cout << "\n9 : END the Operation !!!";
+        cout << "\n\nEnter your choice : ";
+        cin >> choice;
 
         switch (choice)
         {
         case 1: // calling InsertAtBeg(value) function to add a node in the Beginning of the LL
-            printf("Enter Value to Add : ");
-            scanf("%d", &value);
+            cout << "Enter Value to Add : ";
+            cin >> value;
             InsertAtBeg(value);
-            printf("\nNode Added at the beginning.");
+            cout << "\nNode Added at the Beginning.";
             break;
 
         case 2: // calling InsertAtEnd(value) function to add a node in the End of the LL
-            printf("Enter Value to Add : ");
-            scanf("%d", &value);
+            cout << "Enter Value to Add : ";
+            cin >> value;
             InsertAtEnd(value);
-            printf("\nNode Added at the end.");
+            cout << "\nNode Added at the End.";
             break;
 
         case 3: // calling InsertAfterNode(value,after) function to add a node after a node in the LL
-            printf("Enter Value to Add : ");
-            scanf("%d", &value);
-            printf("Enter the Value of node coming before the new node : ");
-            scanf("%d", &after);
+            cout << "Enter Value to Add : ";
+            cin >> value;
+            cout << "Enter the Value of node coming before the new node : ";
+            cin >> after;
             InsertAfterNode(value, after);
-            printf("\nNode Added after the Node having value %d.", after);
+            cout << "\nNode Added after the node having value " << after << ".";
             break;
 
         case 4: // calling InsertBeforeNode(value,before) function to add a node before a node in the LL
-            printf("Enter Value to Add : ");
-            scanf("%d", &value);
-            printf("Enter the Value of node coming after the new node : ");
-            scanf("%d", &before);
+            cout << "Enter Value to Add : ";
+            cin >> value;
+            cout << "Enter the Value of node coming after the new node : ";
+            cin >> before;
             InsertBeforeNode(value, before);
-            printf("\nNode Added before the Node having value %d.", before);
+            cout << "\nNode Added before the node having value " << before << ".";
             break;
 
         case 5: // calling DeleteFromBeg() function to delete a node from the Beginning of the LL
             DeleteFromBeg();
-            printf("\nNode Deleted from the Beginning.");
+            cout << "\nNode Deleted from the Beginning.";
             break;
 
         case 6: // calling DeleteFromEnd() function to delete a node from the End of the LL
             DeleteFromEnd();
-            printf("\nNode Deleted from the End.");
+            cout << "\nNode Deleted from the End.";
             break;
 
-        case 7: // calling Display() function to Display the created LL
-            printf("\nLinked List: ");
+        case 7:
+            cout << "Enter Value to Search : ";
+            cin >> value;
+            Search(value);
+            break;
+
+        case 8: // calling Display() function to Display the created LL
+            cout << "\nLinked List : ";
             Display();
             break;
 
-        case 8: // exiting from the program
-            printf("\nExit !!!");
+        case 9: // exiting from the program
+            cout << "\nExit !!!";
             break;
 
         default:
-            printf("\nInvalid option. Try again.");
+            cout << "\nInvalid option, Try again.";
             break;
         }
     }
@@ -101,9 +105,9 @@ int main()
 
 struct node *CreateNode(int value) // Creating a new node NOTE : this function won't be called directly by the user
 {
-    struct node *newNode = (struct node *)malloc(sizeof(struct node));
+    struct node *newNode = new node();
     newNode->data = value;
-    newNode->next = NULL;
+    newNode->next = nullptr;
     return newNode;
 }
 
@@ -118,14 +122,14 @@ void InsertAtEnd(int value) // Inserting at end
 {
     struct node *new_node = CreateNode(value);
 
-    if (head == NULL)
+    if (head == nullptr)
     {
         head = new_node;
     }
     else
     {
         struct node *ptr = head;
-        while (ptr->next != NULL)
+        while (ptr->next != nullptr)
         {
             ptr = ptr->next;
         }
@@ -136,14 +140,14 @@ void InsertAtEnd(int value) // Inserting at end
 void InsertAfterNode(int value, int after) // inserting after a node
 {
     struct node *new_node = CreateNode(value);
-    if (head == NULL)
+    if (head == nullptr)
     {
         head = new_node;
     }
     else
     {
         struct node *ptr = head;
-        while (ptr != NULL && ptr->data != after)
+        while (ptr != nullptr && ptr->data != after)
         {
             ptr = ptr->next;
         }
@@ -155,14 +159,14 @@ void InsertAfterNode(int value, int after) // inserting after a node
 void InsertBeforeNode(int value, int before) // inserting before a node
 {
     struct node *new_node = CreateNode(value);
-    if (head == NULL)
+    if (head == nullptr)
     {
         head = new_node;
     }
     else
     {
         struct node *ptr = head;
-        while (ptr->next != NULL && ptr->next->data != before)
+        while (ptr->next != nullptr && ptr->next->data != before)
         {
             ptr = ptr->next;
         }
@@ -173,9 +177,9 @@ void InsertBeforeNode(int value, int before) // inserting before a node
 
 void DeleteFromBeg() // Deleting from the Beginning
 {
-    if (head == NULL)
+    if (head == nullptr)
     {
-        printf("\nEmpty List !!!");
+        cout << "\nEmpty List !!!";
         return;
     }
     struct node *ptr = head;
@@ -185,35 +189,52 @@ void DeleteFromBeg() // Deleting from the Beginning
 
 void DeleteFromEnd() // Deleting from the End
 {
-    if (head == NULL)
+    if (head == nullptr)
     {
-        printf("\nEmpty List !!!");
+        cout << "\nEmpty List !!!";
         return;
     }
     struct node *ptr = head;
-    while (ptr->next->next != NULL)
+    while (ptr->next->next != nullptr)
     {
         ptr = ptr->next;
     }
     free(ptr->next);
-    ptr->next = NULL;
+    ptr->next = nullptr;
+}
+
+void Search(int value) // Searching for an element
+{
+    struct node *ptr = head;
+    int pos = 1;
+    while (ptr != nullptr)
+    {
+        if (ptr->data == value)
+        {
+            cout << ptr->data << "found at node having position " << pos << endl;
+            return;
+        }
+        ptr = ptr->next;
+        pos++;
+    }
+    cout << "\nNode with value " << value << " not found in the LL !\n";
 }
 
 void Display() // Displaying the list
 {
-    int count = 0; // counting total nodes
+    int count = 0; // counting total nodes in the LL
     struct node *ptr = head;
-    if (ptr == NULL)
+    if (ptr == nullptr)
     {
-        printf("List is empty.\n");
+        cout << "List is empty.\n";
         return;
     }
-    while (ptr != NULL)
+    while (ptr != nullptr)
     {
-        printf("%d -> ", ptr->data);
+        cout << ptr->data << " -> ";
         count++; // increasing count by one
         ptr = ptr->next;
     }
-    printf("END\n");
-    printf("Total number of nodes : %d", count);
+    cout << "END !!\n";
+    cout << "Total number of nodes : " << count;
 }
